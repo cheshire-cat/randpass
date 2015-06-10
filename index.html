@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script type="text/javascript" src="jquery.min.js" ></script>
+	<script type="text/javascript" src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<title>Random passwords</title>
+</head>
+<body>
+	<div id="main">
+		<h1>Random passwords</h1>
+		<div id="options">
+			<a id="formOpener">options</a>
+			<script type="text/javascript">
+			$(document).ready(function(){
+				$("#formOpener").click(function(){
+					$("#optionsForm").slideToggle("slow");
+				});
+			});
+			</script>
+			<form id="optionsForm">
+				<fieldset id="passAlph">
+					<input type="checkbox" checked="checked" class="alphOpts" id="numbers">
+					<label for="numbers">Numbers</label><br>
+					<input type="checkbox" checked="checked" class="alphOpts" id="uppercase">
+					<label for="uppercase">Upper case letters</label><br>
+					<input type="checkbox" checked="checked" class="alphOpts" id="lowercase">
+					<label for="lowercase">Lower case letters</label><br>
+					<input type="checkbox" checked="checked" class="alphOpts" id="symbols">
+					<label for="symbols">Symbols</label><br><br>
+					<input type="checkbox" class="otherOpts" id="readable">
+					<label for="readable">Remove unfriendly chars</label><br>
+				</fieldset>
+				<fieldset id="passLen">
+					<legend id="lenSliderVal"></legend>
+					<div class="slider" id="lenSlider"></div>
+					<script type="text/javascript">
+					$(document).ready(function() {
+						$("#lenSlider").slider({
+							min: 4, 
+							max: 32, 
+							value: 8, 
+							step: 1, 
+							create: function (event, ui) {
+								$("#lenSliderVal").html("Password length: " + $("#lenSlider").slider("value"));
+							},
+							slide: function (event, ui) {
+								$("#lenSliderVal").html("Password length: " + ui.value);
+							},
+						});
+					});
+					</script>
+				</fieldset>
+				<fieldset id="passCount">
+					<legend id="countSliderVal"></legend>
+					<div class="slider" id="countSlider"></div>
+					<script type="text/javascript">
+					$(document).ready(function() {
+						$("#countSlider").slider({
+							min: 1, 
+							max: 100, 
+							value: 10, 
+							step: 1, 
+							create: function (event, ui) {
+								$("#countSliderVal").html("Password count: " + $("#countSlider").slider("value"));
+							},
+							slide: function (event, ui) {
+								$("#countSliderVal").html("Password count: " + ui.value);
+							},
+						});
+					});
+					</script>
+				</fieldset>
+			</form>	
+		</div>
+		<h3>click on a password to copy it...</h3>
+		<h3>or</h3>
+		<a id="copyAllPasswords">click here to copy them all</a>
+		<div id="passwordsBox"></div>
+		<a id="more">Generate new passwords!</a>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
